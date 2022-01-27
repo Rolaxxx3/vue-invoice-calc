@@ -10,6 +10,7 @@ module.exports = {
       scss: {
         additionalData: `
           @import "@/scss/_variables.scss";
+          @import "@/scss/_mixins.scss";
         `,
       },
     },

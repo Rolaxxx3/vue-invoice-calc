@@ -101,6 +101,7 @@ export default Vue.extend({
 <style scoped>
 .invoice__table {
   margin-top: 40px;
+  margin-bottom: 40px;
 }
 .invoice__table-actions {
   padding: 8px 16px;

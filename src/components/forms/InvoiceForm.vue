@@ -34,7 +34,7 @@
         />
       </div>
       <button
-        class="button--success"
+        class="button--success invoice-form__button"
         type="submit"
       >
         Submit
@@ -88,29 +88,52 @@ export default Vue.extend({
 })
 </script>
 
-<style>
+<style lang="scss">
+@import "src/scss/mixins";
+
 .invoice-form {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  flex-direction: column;
 }
 
 .invoice-form__fields-wrapper {
   display: flex;
   justify-content: space-between;
-  width: 80%;
+  flex-direction: column;
+  width: 100%;
 }
 
-.invoice-form__field--big {
-  flex: 5;
-}
-
-.invoice-form__field--small {
-  flex: 1;
+.invoice-form__button {
+  width: 100%;
 }
 
 .invoice-form__field {
-  margin-right: 20px;
   min-width: 150px;
+}
+
+@include respond-to(md) {
+  .invoice-form__fields-wrapper, .invoice-form  {
+    flex-direction: row;
+  }
+
+  .invoice-form__fields-wrapper {
+    width: 80%;
+  }
+
+  .invoice-form__field--big {
+    flex: 5;
+  }
+
+  .invoice-form__field--small {
+    flex: 1;
+  }
+  .invoice-form__field {
+    margin-right: 20px;
+  }
+  .invoice-form__button {
+    width: initial;
+  }
 }
 </style>
