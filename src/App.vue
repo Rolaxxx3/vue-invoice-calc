@@ -12,7 +12,9 @@ export default Vue.extend({
 })
 </script>
 
-<style>
+<style lang="scss">
+@import "scss/global";
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -20,14 +22,5 @@ export default Vue.extend({
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-}
-
-body {
-  padding-left: 144px;
-  padding-right: 144px;
-}
-
-* {
-  box-sizing: border-box;
 }
 </style>

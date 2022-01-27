@@ -11,7 +11,9 @@
       class="input-field__input"
       :placeholder="placeholder"
     >
-    {{ errors[0] }}
+    <div class="input-field__error-wrapper error">
+      {{ errors[0] }}
+    </div>
   </ValidationProvider>
 </template>
 
@@ -63,11 +65,22 @@ export default Vue.extend({
 })
 </script>
 
-<style>
+<style lang="scss">
 .input-field__input {
   width: 100%;
   font-size: 18px;
   line-height: 24px;
-  outline-color: #42b883;
+  padding: 8px;
+}
+.input-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.input-field__error-wrapper {
+  margin-top: 4px;
+  height: 20px;
+  font-size: 14px;
 }
 </style>

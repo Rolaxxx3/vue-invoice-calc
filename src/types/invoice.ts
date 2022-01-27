@@ -1,10 +1,10 @@
-import { StringOrNumber } from '@/types/helpers'
-
-export type Invoice = {
+export type InvoiceForm = {
   name: string,
-  price: StringOrNumber,
-  qty: StringOrNumber,
+  price: number,
+  qty: number,
 }
+
+export type Invoice = InvoiceForm & { sum: number }
 
 export type InvoiceStore = {
   invoices: Array<Invoice>

@@ -13,7 +13,7 @@
           v-model="form.name"
           class="invoice-form__field invoice-form__field--big"
           placeholder="Product name"
-          rules="required"
+          rules="required|min:3"
           name="Product name"
         />
         <InputField
@@ -21,7 +21,7 @@
           type="number"
           class="invoice-form__field invoice-form__field--small"
           placeholder="Price"
-          rules="required"
+          rules="required|min_value:0"
           name="Price"
         />
         <InputField
@@ -29,11 +29,14 @@
           type="number"
           class="invoice-form__field invoice-form__field--small"
           placeholder="Qty"
-          rules="required"
+          rules="required|min_value:0"
           name="Qty"
         />
       </div>
-      <button type="submit">
+      <button
+        class="button--success"
+        type="submit"
+      >
         Submit
       </button>
     </form>
@@ -44,17 +47,17 @@
 import Vue from 'vue'
 import { mapMutations } from 'vuex'
 import { ValidationObserver } from 'vee-validate'
-import { Invoice } from '@/types/invoice'
+import { InvoiceForm } from '@/types/invoice'
 import InputField from '@/components/fields/InputField.vue'
 
 type ComponentData = {
-  form: Invoice
+  form: InvoiceForm
 }
 
-const defaultForm = ():Invoice => ({
+const defaultForm = ():InvoiceForm => ({
   name: '',
-  price: '',
-  qty: '',
+  price: 0,
+  qty: 0,
 })
 
 export default Vue.extend({
@@ -75,6 +78,11 @@ export default Vue.extend({
     onSubmit() {
       this.ADD_INVOICE(this.form)
       this.form = defaultForm()
+      const observer = this.$refs.observer
+      if (observer) {
+        // @ts-ignore
+        observer.reset()
+      }
     },
   },
 })
@@ -84,12 +92,13 @@ export default Vue.extend({
 .invoice-form {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
 }
 
 .invoice-form__fields-wrapper {
   display: flex;
   justify-content: space-between;
-  width: 90%;
+  width: 80%;
 }
 
 .invoice-form__field--big {
@@ -102,6 +111,6 @@ export default Vue.extend({
 
 .invoice-form__field {
   margin-right: 20px;
-  min-width: 100px;
+  min-width: 150px;
 }
 </style>

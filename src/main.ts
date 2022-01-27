@@ -3,7 +3,7 @@ import App from './App.vue'
 import store from './store'
 import router from './router'
 import 'vue-good-table/dist/vue-good-table.css'
-
+import currencyFilter from '@/filters/currencyFilter'
 import { extend } from 'vee-validate'
 import * as rules from 'vee-validate/dist/rules'
 
@@ -15,6 +15,8 @@ for (const [rule, validation] of Object.entries(rules)) {
 }
 
 Vue.config.productionTip = false
+
+Vue.filter('currencyFilter', currencyFilter)
 
 new Vue({
   name: 'VueInvoiceCalc',
