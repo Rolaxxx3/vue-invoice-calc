@@ -1,19 +1,15 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <router-view />
   </div>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+<script lang="ts">
+import Vue from 'vue'
 
-export default {
+export default Vue.extend({
   name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+})
 </script>
 
 <style>
@@ -24,5 +20,14 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+body {
+  padding-left: 144px;
+  padding-right: 144px;
+}
+
+* {
+  box-sizing: border-box;
 }
 </style>
