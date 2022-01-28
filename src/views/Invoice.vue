@@ -42,8 +42,9 @@ import InvoiceForm from '@/components/forms/InvoiceForm.vue'
 import { mapState } from 'vuex'
 import { VueGoodTable } from 'vue-good-table'
 import { Invoice } from "@/types/invoice"
-import { VueGoodTableWithCheckbox } from "@/types/helpers"
+import { VueGoodTableWithCheckbox, VueGoodTableCol } from "@/types/helpers"
 import { mapMutations } from 'vuex'
+import currencyFilter from '@/filters/currencyFilter'
 
 type TableRow = Invoice & VueGoodTableWithCheckbox
 type SelectedTableRows = {
@@ -51,10 +52,7 @@ type SelectedTableRows = {
 }
 
 type ComponentDataType = {
-  tableColumns: Array<{
-    label: string,
-    field: string
-  }>,
+  tableColumns: Array<VueGoodTableCol>,
   selectedRows: Array<TableRow>,
 }
 
@@ -68,9 +66,9 @@ export default Vue.extend({
   data: ():ComponentDataType => ({
     tableColumns: [
       { label: 'Product name', field: 'name' },
-      { label: 'Price', field: 'price' },
-      { label: 'Qty', field: 'qty' },
-      { label: 'Sum', field: 'sum' },
+      { label: 'Price', field: 'price', formatFn: currencyFilter },
+      { label: 'Qty', field: 'qty', formatFn: currencyFilter },
+      { label: 'Sum', field: 'sum', formatFn: currencyFilter },
     ],
 
     selectedRows: [],
@@ -80,7 +78,7 @@ export default Vue.extend({
     ...mapState('invoice', ['invoices']),
 
     getTotalPrice():number {
-      return this.selectedRows.reduce((prev, row) => prev + row.price, 0) || 0
+      return this.invoices.reduce((prev:number, row:Invoice) => prev + row.sum, 0) || 0
     },
   },
 

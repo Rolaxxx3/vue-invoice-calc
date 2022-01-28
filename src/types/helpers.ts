@@ -5,3 +5,9 @@ export type VueGoodTableWithCheckbox = {
   vgtSelected: boolean,
   vgt_id: number,
 }
+
+export type VueGoodTableCol = {
+  label: string,
+  field: string,
+  formatFn?: (str:string) => string,
+}
