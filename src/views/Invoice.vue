@@ -67,7 +67,7 @@ export default Vue.extend({
     tableColumns: [
       { label: 'Product name', field: 'name' },
       { label: 'Price', field: 'price', formatFn: currencyFilter },
-      { label: 'Qty', field: 'qty', formatFn: currencyFilter },
+      { label: 'Qty', field: 'qty' },
       { label: 'Sum', field: 'sum', formatFn: currencyFilter },
     ],
 
